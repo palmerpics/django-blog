@@ -5,14 +5,18 @@ from blogging.models import Post
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+
 class BloggingListView(ListView):
-    queryset = Post.objects.exclude(published_date__exact=None).order_by('-published_date')
-    template_name = 'blogging/list.html'
+    queryset = Post.objects.exclude(published_date__exact=None).order_by(
+        "-published_date"
+    )
+    template_name = "blogging/list.html"
 
 
 class BloggingDetailView(DetailView):
     queryset = Post.objects.exclude(published_date__exact=None)
-    template_name = 'blogging/detail.html'
+    template_name = "blogging/detail.html"
+
 
 # def list_view(request):
 #     published = Post.objects.exclude(published_date__exact=None)
@@ -38,5 +42,3 @@ class BloggingDetailView(DetailView):
 #         raise Http404
 #     context = {'post': post}
 #     return render(request, 'blogging/detail.html', context)
-
-
